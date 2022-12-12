@@ -9,13 +9,10 @@ pipeline {
                 git branch: 'main', credentialsId: '30d20ff5-3d97-4aaa-a4da-111ae90beac8', url: 'https://github.com/manojsubramaniam/test03.git'
             }
         }
-        when{
-            expression { params.name == 'Docker-Container' }
-        } 
-            stage('Docker Container'){
-                steps {
+        stage('Docker Container'){
+            steps {
                     sh 'docker-compose up -d --build'
-                }
             }
+        }
     }
 }
