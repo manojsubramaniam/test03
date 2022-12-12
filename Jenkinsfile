@@ -13,15 +13,10 @@ pipeline {
                expression { params.name == 'Docker-Container' }
           } 
           {
-          stage('Docker-Container'){
-		      steps {
-                sh '''
-                    docker build -t newimg .
-                    docker run -itd --name newcont -p 8090:80 newimg
-                    docker ps
-                '''
-          }
-          }
-     
+          stage('Docker Container'){
+            steps {
+                sh 'docker-compose up -d --build'
+            }
+        }
     }
 }
