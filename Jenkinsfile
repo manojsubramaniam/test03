@@ -10,6 +10,7 @@ pipeline {
             }
         }
         stage('Docker Container'){
+           when{ expression {env.name == 'Docker-Container'}}    
             steps {
                     sh 'docker-compose up -d --build'
             }
