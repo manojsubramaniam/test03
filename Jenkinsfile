@@ -9,10 +9,17 @@ pipeline{
         }
         stage('Checkout') {
             steps{
-                git branch: 'SPRINT', credentialsId: '6fa4c8a9-14a9-44e0-8630-b540766d146d', url: 'https://github.com/manojsubramaniam/test03.git'
+                git branch: 'SPRINT', credentialsId: '30d20ff5-3d97-4aaa-a4da-111ae90beac8', url: 'https://github.com/manojsubramaniam/test03.git'
 
             }
         }
+	stage('Docker Container Clean'){
+            steps {
+              //sh 'docker system prune -a --volumes -f'
+			sh'docker rm -f samplecont'
+			sh'docker rmi -f nginx:alpine'
+	    }
+	}    
 	stage('Docker Container'){
             steps {
                 sh 'docker-compose up -d --build'
