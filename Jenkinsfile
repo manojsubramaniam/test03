@@ -1,12 +1,32 @@
-pipeline {
-    agent any
-    parameters {
-        choice(name: 'Docker', choices:['Test01','Test02'], description: 'Select the Github account')
-    }
-    stages {
-        stage('git') {
+pipeline{
+	agent any 
+	
+    stages{
+        stage("Run Tests") {
             steps {
-                git branch: 'main', credentialsId: '6fa4c8a9-14a9-44e0-8630-b540766d146d', url: 'https://github.com/manojsubramaniam/test02.git'
+                sh "echo SUCCESS on LIVE Branch"
+            }
+        }
+        stage('Checkout') {
+            steps{
+                git branch: 'main', credentialsId: '30d20ff5-3d97-4aaa-a4da-111ae90beac8', url: 'https://github.com/manojsubramaniam/test02.git'
+
+            }
+        }
+        stage('Docker Container Clean'){
+            steps {
+                sh 'docker system prune -a --volumes -f'
+            }
+        }
+        stage('Docker Container'){
+            steps {
+                sh 'docker-compose up -d --build'
+                
+            }
+        }
+	    stage('File Deployment'){
+            steps{
+                sh 'docker cp staticwebsite.html samplecont:/usr/share/nginx/html/index.html'
             }
         }
     }
