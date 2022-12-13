@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('git') {
             steps {
-                git branch: 'main', credentialsId: '6fa4c8a9-14a9-44e0-8630-b540766d146d', url: 'https://github.com/manojsubramaniam/test03.git'
+                git branch: 'main', credentialsId: '6fa4c8a9-14a9-44e0-8630-b540766d146d', url: 'https://github.com/manojsubramaniam/test02.git'
             }
         }
     }
