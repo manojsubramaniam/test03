@@ -16,7 +16,7 @@ pipeline{
 	stage('Docker Container Clean'){
             steps {
              		//sh 'docker system prune -a --volumes -f'
-			sh'apt install docker.io'
+			//sh'apt install docker.io'
 		    	//sh'docker rm -f samplecont'
 			//sh'docker rmi -f nginx:alpine'
 	    }
