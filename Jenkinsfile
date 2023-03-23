@@ -2,6 +2,21 @@ pipeline{
 	agent any 
 	
     stages{
+	   stage('Get User Input') {
+             steps {
+                script {
+                    def userInput = input(
+                        message: 'Please provide input',
+                        parameters: [
+                            string(name: 'param1', defaultValue: '', description: 'Parameter 1 description'),
+                            booleanParam(name: 'param2', defaultValue: true, description: 'Parameter 2 description')
+                        ]
+                    )
+                    echo "User input: param1=${userInput.param1}, param2=${userInput.param2}"
+                }
+             }
+          }
+	    
         stage("Run Tests") {
             steps {
                 sh "echo SUCCESS on SPRINT"
