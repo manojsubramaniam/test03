@@ -2,20 +2,7 @@ pipeline{
 	agent any 
 	
    stages{
-	   stage('Get User Input') {
-            steps {
-                script {
-                    def userInput = input(
-                        message: 'Please select a file',
-                        parameters: [
-                            file(name: 'fileParam', description: 'Select a file')
-                        ]
-                    )
-                    echo "User selected file: ${userInput.fileParam}"
-                }
-            }
-           } 
-	   stage('Get User Input') {
+	  stage('Get User Input') {
              steps {
                 script {
                     def userInput = input(
