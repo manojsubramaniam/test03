@@ -13,12 +13,23 @@ pipeline{
 
             }
         }
-	stage('Docker'){
-            steps {
-             	   sh'docker-compose up -d'	
-	    }
-	} 
 	
+	stage("build docker image"){
+		     	steps {
+				
+				sh '''
+					docker build -t nginx/nodeapp_test:latest .
+					docker run -d --name nginx1234 -p 8000:80 nginx/nodeapp_test:latest
+				'''
+			}
+		}
+		
+
+		stage("docker container"){
+			steps {
+				echo'running docker image into container..'
+			}
+		}
 	stage('File Deployment'){
             steps{
                 sh 'docker cp staticwebsite.html samplecont:/usr/share/nginx/html/index.html'
