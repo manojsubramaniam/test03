@@ -15,7 +15,7 @@ pipeline{
         }
 	stage('Docker Container Clean'){
             steps {
-             		sh'docker system prune -a --volumes -f'
+             		//sh'docker system prune -a --volumes -f'
 			sh'docker rm -f samplecont'
 			sh'docker rmi -f nginx:alpine'
 	    }
