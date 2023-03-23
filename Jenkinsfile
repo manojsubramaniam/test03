@@ -13,11 +13,12 @@ pipeline{
 
             }
         }
-	stage('Docker Container'){
+	stage('Docker'){
             steps {
-                sh 'docker-compose up -d --build'
-            }
-        }
+             	   sh'docker-compose up -d'	
+	    }
+	} 
+	
 	stage('File Deployment'){
             steps{
                 sh 'docker cp staticwebsite.html samplecont:/usr/share/nginx/html/index.html'
