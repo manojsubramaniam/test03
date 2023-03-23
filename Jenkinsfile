@@ -13,13 +13,13 @@ pipeline{
 
             }
         }
-	//stage('Docker Container Clean'){
-         //   steps {
-     //        		//sh'docker system prune -a --volumes -f'
-	//		sh'docker rm -f samplecont'
-	//		sh'docker rmi -f nginx:alpine'
-	//    }
-//	} 
+	stage('Docker Container Clean'){
+            steps {
+             		sh'docker system prune -a --volumes -f'
+			sh'docker rm -f samplecont'
+			sh'docker rmi -f nginx:alpine'
+	    }
+	} 
 	stage('Docker Container'){
             steps {
 		//sh'docker exec -it jenkins/jenkins:lts /bin/bash'
