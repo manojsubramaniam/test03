@@ -22,7 +22,7 @@ pipeline{
 //	} 
 	stage('Docker Container'){
             steps {
-		sh'docker exec -it jenkins/jenkins:lts /bin/bash'
+		//sh'docker exec -it jenkins/jenkins:lts /bin/bash'
                 sh 'docker-compose up -d --build'
             }
         }
