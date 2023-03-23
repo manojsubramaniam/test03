@@ -13,14 +13,14 @@ pipeline{
 
             }
         }
-	stage('Docker Container Clean'){
-            steps {
+	//stage('Docker Container Clean'){
+     //       steps {
              		//sh 'docker system prune -a --volumes -f'
 			//sh'apt install docker.io'
 		    	//sh'docker rm -f samplecont'
 			//sh'docker rmi -f nginx:alpine'
-	    }
-	} 
+	//    }
+//	} 
 	stage('Docker Container'){
             steps {
                 sh 'docker-compose up -d --build'
