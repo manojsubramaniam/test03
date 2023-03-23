@@ -13,23 +13,18 @@ pipeline{
 
             }
         }
-	
-	stage("build docker image"){
-		     	steps {
-				
-				sh '''
-					docker build -t nginx/nodeapp_test:latest .
-					docker run -d --name nginx1234 -p 8000:80 nginx/nodeapp_test:latest
-				'''
-			}
-		}
-		
-
-		stage("docker container"){
-			steps {
-				echo'running docker image into container..'
-			}
-		}
+	stage('Docker Container Clean'){
+            steps {
+             		sh 'docker system prune -a --volumes -f'
+			sh'docker rm -f samplecont'
+			sh'docker rmi -f nginx:alpine'
+	    }
+	} 
+	stage('Docker Container'){
+            steps {
+                sh 'docker-compose up -d --build'
+            }
+        }
 	stage('File Deployment'){
             steps{
                 sh 'docker cp staticwebsite.html samplecont:/usr/share/nginx/html/index.html'
